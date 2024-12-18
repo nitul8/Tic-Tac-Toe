@@ -1,0 +1,17 @@
+.square {
+    height: 50px;
+    width: 50px;
+    border: solid 2px black;
+    outline: none;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
