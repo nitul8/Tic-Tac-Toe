@@ -10,7 +10,7 @@ function Game() {
     function handlePlay(nextSquares) {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
         setHistory(nextHistory);
-        setCurrentMove(nextHistory.length - 1); // Corrected here
+        setCurrentMove(nextHistory.length - 1);
     }
 
     function jumpTo(nextMove) {
@@ -19,10 +19,12 @@ function Game() {
 
     const moves = history.map((squares, move) => {
         let description;
-        if (move > 0) {
+        if (move === 9) {
+            description = "Game ended";
+        } else if (move > 0) {
             description = "Go to move #" + move;
         } else {
-            description = "Go to game start";
+            description = "Start the game";
         }
         return (
             <li key={move}>
@@ -32,15 +34,17 @@ function Game() {
     });
 
     return (
-        <div className="game">
-            <div className="game-board">
+        <div className="grid grid-row-2 gap-4 items-center">
+            <div className="game-board mx-auto">
                 <Board
                     xIsNext={xIsNext}
                     squares={currentSquare}
                     onPlay={handlePlay}
                 />
             </div>
-            <div className="game-info">{moves}</div>
+            <div className="game-info mx-auto mt-32 text-center overflow-hidden max-h-20 flex flex-col-reverse justify-end">
+                {moves}
+            </div>
         </div>
     );
 }
